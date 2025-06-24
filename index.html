@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Test Website</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Hello World!</h1>
-  <p>This is my first website hosted for free.</p>
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World Website</title>
+
+    <!-- ✅ Bandyer Web SDK CDN -->
+    <script src="https://cdn.bandyer.com/sdk/js/chat/2.x.x/bandyer-widget.min.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <p>This is my first website hosted for free.</p>
+
+    <!-- ✅ SDK Initialization -->
+    <script type="text/javascript">
+      BandyerSDK.init({
+        apiKey: 'YOUR_API_KEY_HERE',           // Replace with your real API key
+        userId: 'test-user-id',                // Dynamic or hardcoded user ID
+        userDisplayName: 'Test User',          // Name visible in the chat
+        environment: 'sandbox'                 // or 'production'
+      });
+    </script>
+  </body>
 </html>
