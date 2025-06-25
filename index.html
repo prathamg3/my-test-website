@@ -9,16 +9,46 @@
   </head>
   <body>
     <h1>Hello World!</h1>
-    <p>This is my first website hosted for free.</p>
+    <p>This is my first website hosted for free with Bandyer Web SDK.</p>
 
-    <!-- ✅ SDK Initialization -->
+    <!-- ✅ Bandyer SDK Initialization Script -->
     <script type="text/javascript">
-      BandyerSDK.init({
-        apiKey: 'YOUR_API_KEY_HERE',           // Replace with your real API key
-        userId: 'test-user-id',                // Dynamic or hardcoded user ID
-        userDisplayName: 'Test User',          // Name visible in the chat
-        environment: 'sandbox'                 // or 'production'
-      });
+      (async () => {
+        try {
+          const Client = await BandyerSDK.configure({
+            appId: 'wAppId_85661fc04c56bdaa14b1271c12c63eff6d00d9b2e57a407138b7b98d9f11', // ✅ Web App ID
+            region: 'eu',
+            environment: 'sandbox', // Use 'production' when going live
+            callType: 'audio_video',
+            mode: 'embed',
+            language: 'en',
+            isAdmin: true,
+            feedback: true,
+            virtualBackground: 'blur',
+            tools: {
+              chat: true,
+              screen_sharing: true,
+              file_upload: true,
+              whiteboard: {
+                wb_add_file: true,
+                wb_cursor: true,
+                wb_text: true,
+                wb_shape: true,
+                wb_pen: true,
+                wb_eraser: true
+              },
+              snapshot: true,
+              live_edit: true,
+              live_pointer: true
+            }
+          });
+
+          // ✅ You now have access to the Client object
+          console.log("Bandyer Client ready:", Client);
+        } catch (err) {
+          console.error("Error initializing Bandyer SDK:", err);
+        }
+      })();
     </script>
   </body>
 </html>
