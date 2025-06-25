@@ -1,54 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Hello World Website</title>
-
-    <!-- ✅ Bandyer Web SDK CDN -->
-    <script src="https://cdn.bandyer.com/sdk/js/chat/2.x.x/bandyer-widget.min.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <p>This is my first website hosted for free with Bandyer Web SDK.</p>
-
-    <!-- ✅ Bandyer SDK Initialization Script -->
-    <script type="text/javascript">
-      (async () => {
-        try {
-          const Client = await BandyerSDK.configure({
-            appId: 'wAppId_85661fc04c56bdaa14b1271c12c63eff6d00d9b2e57a407138b7b98d9f11', // ✅ Web App ID
-            region: 'eu',
-            environment: 'sandbox', // Use 'production' when going live
-            callType: 'audio_video',
-            mode: 'embed',
-            language: 'en',
-            isAdmin: true,
-            feedback: true,
-            virtualBackground: 'blur',
-            tools: {
-              chat: true,
-              screen_sharing: true,
-              file_upload: true,
-              whiteboard: {
-                wb_add_file: true,
-                wb_cursor: true,
-                wb_text: true,
-                wb_shape: true,
-                wb_pen: true,
-                wb_eraser: true
-              },
-              snapshot: true,
-              live_edit: true,
-              live_pointer: true
-            }
-          });
-
-          // ✅ You now have access to the Client object
-          console.log("Bandyer Client ready:", Client);
-        } catch (err) {
-          console.error("Error initializing Bandyer SDK:", err);
+<script type="text/javascript">
+  (async () => {
+    try {
+      // Step 1: Configure the SDK
+      const client = await BandyerSDK.configure({
+        appId: 'wAppId_85661fc04c56bdaa14b1271c12c63eff6d00d9b2e57a407138b7b98d9f11',
+        region: 'eu',
+        environment: 'sandbox',
+        callType: 'audio_video',
+        mode: 'embed',
+        language: 'en',
+        isAdmin: true,
+        feedback: true,
+        virtualBackground: 'blur',
+        tools: {
+          chat: true,
+          screen_sharing: true,
+          file_upload: true,
+          whiteboard: {
+            wb_add_file: true,
+            wb_cursor: true,
+            wb_text: true,
+            wb_shape: true,
+            wb_pen: true,
+            wb_eraser: true
+          },
+          snapshot: true,
+          live_edit: true,
+          live_pointer: true
         }
-      })();
-    </script>
-  </body>
-</html>
+      });
+
+      // Step 2: Connect the client
+      await client.connect({
+        userId: "test-user-id",
+        displayName: "Test User"
+      });
+
+      // Step 3: Manually start a new chat (to make the widget visible)
+      await client.addChat({
+        id: "chat123",              // Chat ID must be unique
+        displayName: "Test Chat",   // Name shown in the widget
+        participants: ["test-user-id"]
+      });
+
+      console.log("Bandyer widget started and chat opened.");
+    } catch (error) {
+      console.error("Bandyer SDK error:", error);
+    }
+  })();
+</script>
