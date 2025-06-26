@@ -29,52 +29,52 @@
 
   <!-- ✅ Auto-trigger Bandyer Web SDK -->
   <script type="text/javascript">
-    window.addEventListener("DOMContentLoaded", async () => {
-      try {
-        const client = await BandyerSDK.configure({
-          appId: 'wAppId_85661fc04c56bdaa14b1271c12c63eff6d00d9b2e57a407138b7b98d9f11',
-          region: 'eu',
-          environment: 'sandbox',
-          callType: 'audio_video',
-          mode: 'embed',
-          language: 'en',
-          isAdmin: true,
-          feedback: true,
-          virtualBackground: 'blur',
-          tools: {
-            chat: true,
-            screen_sharing: true,
-            file_upload: true,
-            whiteboard: {
-              wb_add_file: true,
-              wb_cursor: true,
-              wb_text: true,
-              wb_shape: true,
-              wb_pen: true,
-              wb_eraser: true
-            },
-            snapshot: true,
-            live_edit: true,
-            live_pointer: true
-          }
-        });
+  window.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const client = await BandyerSDK.configure({
+        appId: 'wAppId_85661fc04c56bdaa14b1271c12c63eff6d00d9b2e57a407138b7b98d9f11',
+        region: 'eu',
+        environment: 'sandbox',
+        callType: 'audio_video',
+        mode: 'embed',
+        language: 'en',
+        isAdmin: true,
+        feedback: true,
+        virtualBackground: 'blur',
+        tools: {
+          chat: true,
+          screen_sharing: true,
+          file_upload: true,
+          whiteboard: {
+            wb_add_file: true,
+            wb_cursor: true,
+            wb_text: true,
+            wb_shape: true,
+            wb_pen: true,
+            wb_eraser: true
+          },
+          snapshot: true,
+          live_edit: true,
+          live_pointer: true
+        }
+      });
 
-        await client.connect({
-          userId: "test-user-id",
-          displayName: "Test User"
-        });
+      await client.connect({
+        userId: "test-user-id",
+        displayName: "Test User"
+      });
 
-        await client.addChat({
-          id: "chat123",
-          displayName: "Jewellery Support Chat",
-          participants: ["test-user-id"]
-        });
+      await client.addChat({
+        id: "chat123",
+        displayName: "Jewellery Support Chat",
+        participants: ["test-user-id"]
+      });
 
-        console.log("✅ Bandyer widget is live and chat has started.");
-      } catch (error) {
-        console.error("❌ Error initializing Bandyer SDK:", error);
-      }
-    });
-  </script>
+      console.log("✅ Bandyer widget is live and chat has started.");
+    } catch (error) {
+      console.error("❌ Error initializing Bandyer SDK:", error);
+    }
+  });
+</script>
 </body>
 </html>
